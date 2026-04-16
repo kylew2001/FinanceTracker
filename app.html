@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanceTracker | Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div>
+        <h2>FinanceTracker</h2>
+        <p id="welcome-name" class="muted"></p>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-page="budget">Budget</button>
+        <button class="menu-item" data-page="accounts">Account Totals</button>
+        <button class="menu-item" data-page="profile">Profile</button>
+      </nav>
+
+      <button id="logout" class="danger">Logout</button>
+    </aside>
+
+    <main class="content">
+      <section id="page-budget" class="page active">
+        <h1>Budget Planner</h1>
+        <form id="budget-form" class="grid-form">
+          <label>Description
+            <input id="budget-description" type="text" required />
+          </label>
+
+          <label>Type
+            <select id="budget-type">
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+          </label>
+
+          <label>Amount
+            <input id="budget-amount" type="number" min="0" step="0.01" required />
+          </label>
+
+          <label>Period
+            <select id="budget-period">
+              <option value="weekly">Weekly</option>
+              <option value="fortnightly">Fortnightly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </label>
+
+          <button type="submit">Add Entry</button>
+        </form>
+
+        <div class="stats">
+          <div class="card"><h3>Monthly Income</h3><p id="monthly-income">$0.00</p></div>
+          <div class="card"><h3>Monthly Expenses</h3><p id="monthly-expenses">$0.00</p></div>
+          <div class="card"><h3>Left Over</h3><p id="monthly-left">$0.00</p></div>
+        </div>
+
+        <table>
+          <thead>
+            <tr><th>Description</th><th>Type</th><th>Amount</th><th>Period</th><th>Monthly Eq.</th><th></th></tr>
+          </thead>
+          <tbody id="budget-table"></tbody>
+        </table>
+      </section>
+
+      <section id="page-accounts" class="page">
+        <h1>Account Running Totals</h1>
+        <form id="movement-form" class="grid-form">
+          <label>Account
+            <input id="movement-account" type="text" required placeholder="Bills account" />
+          </label>
+
+          <label>Expense Name
+            <input id="movement-label" type="text" required placeholder="Electricity" />
+          </label>
+
+          <label>Amount
+            <input id="movement-amount" type="number" step="0.01" required />
+          </label>
+
+          <label>Type
+            <select id="movement-type">
+              <option value="deposit">Deposit (+)</option>
+              <option value="expense">Expense (-)</option>
+            </select>
+          </label>
+
+          <button type="submit">Record Movement</button>
+        </form>
+
+        <div class="card">
+          <h3>Total Account Balance</h3>
+          <p id="account-total">$0.00</p>
+        </div>
+
+        <table>
+          <thead>
+            <tr><th>Account</th><th>Expense</th><th>Type</th><th>Amount</th><th>Running Balance</th><th></th></tr>
+          </thead>
+          <tbody id="movement-table"></tbody>
+        </table>
+      </section>
+
+      <section id="page-profile" class="page">
+        <h1>Profile</h1>
+        <form id="profile-form" class="grid-form">
+          <label>Name
+            <input id="profile-name" type="text" />
+          </label>
+
+          <label>Phone
+            <input id="profile-phone" type="tel" />
+          </label>
+
+          <label>Profile Picture URL
+            <input id="profile-photo" type="url" placeholder="https://..." />
+          </label>
+
+          <button type="submit">Save Profile</button>
+        </form>
+
+        <div class="profile-preview">
+          <img id="profile-photo-preview" src="" alt="Profile preview" />
+          <div>
+            <h3 id="profile-name-preview">No name set</h3>
+            <p id="profile-phone-preview" class="muted">No phone set</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js" type="module"></script>
+</body>
+</html>
