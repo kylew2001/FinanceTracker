@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanceTracker | Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="auth-body">
+  <main class="auth-card">
+    <h1>FinanceTracker</h1>
+    <p class="muted">Sign in to continue</p>
+
+    <form id="auth-form" class="form-stack">
+      <label>
+        Username
+        <input id="username" type="text" autocomplete="username" required minlength="3" />
+      </label>
+
+      <label>
+        Password
+        <input id="password" type="password" autocomplete="current-password" required minlength="8" />
+      </label>
+
+      <button type="submit">Sign In / Create Account</button>
+    </form>
+
+    <p id="auth-message" class="message"></p>
+    <p class="muted small">
+      First login with a new username will create a local account.
+    </p>
+  </main>
+
+  <script src="auth.js" type="module"></script>
+</body>
+</html>
